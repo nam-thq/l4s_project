@@ -1,0 +1,8 @@
+SELECT 
+	(@row_number := @row_number + 1) AS row_number 
+   ,a.*
+ FROM 
+    `event` a
+    CROSS JOIN (SELECT @row_number := 0) AS init_user_var  
+    WHERE a.`VALID_F` = "1"
+    ORDER BY a.`START_DATE`
